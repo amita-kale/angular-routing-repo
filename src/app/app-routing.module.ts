@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
   {
-    path: 'amita',
-    loadChildren: () => import('./amita/amita.module').then(m => m.AmitaModule)
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
-    path: 'aniket',
-    loadChildren: () => import('./aniket/aniket.module').then(m => m.AniketModule)
-  },
-  {
-    path: 'ashvini',
-    loadChildren: () => import('./ashvini/ashvini.module').then(m => m.AshviniModule)
+    path: 'home',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+      }
+    ]
   }
 ];
 
